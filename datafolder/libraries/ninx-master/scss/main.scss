@@ -1,0 +1,303 @@
+$bg-color: #e82431;
+
+@mixin transition($what: all, $time: 0.2s, $how: ease-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+    transition:         $what $time $how;
+}
+
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+
+// Translate
+@mixin translate ($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+body {
+  background-color: $bg-color;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  span:hover {
+    cursor: pointer;
+}
+
+  .spotifyInfo {
+    position: absolute;
+    margin-top: -9px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Taijawl', sans-serif;
+    right: 20px;
+    top: 50%;
+    // opacity: 0;
+  }
+
+  .init {
+    z-index: 99999;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    height: 300px;
+    margin-top: -120px;
+    margin-left: -66px;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    svg, span, a {
+      cursor: pointer;
+    }
+
+    img {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      margin-left: -24px;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: 'Taijawl', sans-serif;
+      font-weight: 200;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+  }
+
+  .blur {
+    @include transition(all,4s,ease-out);
+    z-index: 9999;
+    -webkit-filter: blur(12px); /* Chrome, Opera, etc. */
+    filter: url('blur.svg#blur'); /* Older FF and others - http://jordanhollinger.com/media/blur.svg */
+    filter: blur(12px); /* Firefox 35+, eventually all */
+  }
+
+  .title {
+    position: absolute;
+    top: 20px;
+    left: 22px;
+
+    h2 {
+      font-family: 'Taijawl', sans-serif;
+      font-weight:700;
+      font-size: 24px;
+      color: white;
+      margin-top: 0;
+      margin-left: 5px;
+    }
+  }
+
+  #bars {
+    opacity: 0;
+    height: 35px;
+    left: 50%;
+    // margin: -30px 0 0 -20px;
+    position: absolute;
+    bottom: 20px;
+    width: 45px;
+    margin-left: -22px;
+  }
+
+  .bar {
+    background: #ffffff;
+    bottom: 1px;
+    height: 2px;
+    position: absolute;
+    width: 1.5px;
+    animation: sound 0ms -800ms linear infinite alternate;
+  }
+
+  @keyframes sound {
+    0% {
+      // opacity: .35;
+      height: 3px;
+    }
+    100% {
+      opacity: 1;
+      height: 20px;
+    }
+  }
+
+  .bar:nth-child(1) {
+    left: 1px;
+    animation-duration: 474ms;
+  }
+
+  .bar:nth-child(2) {
+    left: 5px;
+    animation-duration: 453ms;
+  }
+
+  .bar:nth-child(3) {
+    left: 9px;
+    animation-duration: 407ms;
+  }
+
+  .bar:nth-child(4) {
+    left: 13px;
+    animation-duration: 458ms;
+  }
+
+  .bar:nth-child(5) {
+    left: 17px;
+    animation-duration: 400ms;
+  }
+
+  .bar:nth-child(6) {
+    left: 21px;
+    animation-duration: 427ms;
+  }
+
+  .bar:nth-child(7) {
+    left: 25px;
+    animation-duration: 441ms;
+  }
+
+  .bar:nth-child(8) {
+    left: 29px;
+    animation-duration: 419ms;
+  }
+
+  .menu {
+    position: absolute;
+    top:47%;
+    margin-top:-150px;
+    font-weight: 300;
+    width:180px;
+    height:300px;
+    opacity: 0;
+
+    input {
+    	outline: none;
+    }
+
+    input[type=search] {
+    	-webkit-appearance: textfield;
+      appearance: textfield;
+    	-webkit-box-sizing: content-box;
+      box-sizing: content-box;
+    	font-family: 'Tajawal', sans-serif;
+    	font-size: 13px;
+      line-height: normal;line-height: 100% !important;
+    }
+    input::-webkit-search-decoration,
+    input::-webkit-search-cancel-button {
+    	display: none;
+    }
+
+
+    input[type=search] {
+    	background: #ededed url(../assets/search.png) no-repeat 12px center;
+      color: white;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.24);
+    	padding: 14px 10px 9px 38px;
+    	width: 80px;
+      line-height: normal;
+      // height: 9px;
+
+      -webkit-border-radius: 10em;
+      -moz-border-radius: 10em;
+      border-radius: 10em;
+
+    	-webkit-transition: all .5s;
+    	-moz-transition: all .5s;
+    	transition: all .5s;
+    }
+
+    input[type=search]:focus {
+      outline: none;
+    	width: 135px;
+    	-webkit-background-color: rgba(255, 255, 255, 0.1);
+      -moz-background-color: rgba(255, 255, 255, 0.1);
+      -o-background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    input[type=search]:blur {
+      outline: none;
+      width: 135px;
+      -webkit-border-radius: 10em;
+      -moz-border-radius: 10em;
+      border-radius: 10em;
+    }
+
+
+    input:-moz-placeholder {
+    	color: rgba(255, 255, 255, 0.6);
+    }
+    input::-webkit-input-placeholder {
+    	color: rgba(255, 255, 255, 0.6);
+    }
+
+    /////////////////////////
+
+    .trans {
+      @include transition(all,0.6s,ease-out);
+      text-rendering: optimizeSpeed;
+    }
+
+    ul {
+      padding-left: 0;
+      margin-left: 30px;
+      li, p {
+        // @include transition(all,0.4s,ease-out);
+        cursor: pointer;
+        font-family: 'Tajawal', sans-serif;
+        font-size: 13px;
+        color: white;
+        opacity: 0.6;
+        font-weight: 500;
+        // padding: 0;
+        margin-left: 0;
+        list-style-type: none;
+        margin: 30px 0;
+        text-decoration: none;
+
+        p {
+          padding-top: 4px;
+          // &:hover {
+          //   @include transition(all,0.3s,ease-out);
+          //   padding-left: 4px;
+          //   opacity: 1;
+          //   text-rendering: optimizeSpeed;
+          // }
+        }
+
+        #searchBar {
+          &:hover {
+            padding-left: 0;
+          }
+        }
+
+        #errorMessage {
+          color: white;
+          opacity: 0;
+          padding-left: 4px;
+          color: black;
+          font-weight: 900;
+          width: 200px;
+
+          &:hover {
+            padding-left: 4px;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
